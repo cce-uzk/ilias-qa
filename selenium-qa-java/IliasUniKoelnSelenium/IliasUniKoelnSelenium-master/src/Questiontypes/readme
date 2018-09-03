@@ -1,0 +1,7 @@
+/**
+ * Datensgtruktur der Liste mit den wichtigen Infos aus dem XML Doku:
+ * 0: item title ----- Fragenüberschrift
+ * 1: antworten. varequal respident// hier werden zum Biepiels "gap_0" info gespeichert
+ * 2:  vareuqal inline text: text der MultipleChoide antwortmöglichkeiten
+ * 3: setvar. gibt die punktzahl an die bei klicken der antwort addiert wird im inlinetext
+ */

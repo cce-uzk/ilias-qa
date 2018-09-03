@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="IliasUniKoelnSelenium-master:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/IliasUniKoelnSelenium_master_jar</output-path>
+    <root id="archive" name="IliasUniKoelnSelenium-master.jar">
+      <element id="module-output" name="IliasUniKoelnSelenium-master" />
+      <element id="extracted-dir" path="C:/Program Files/Selenium Java/selenium-2.45.0/selenium-java-2.45.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Selenium Java/selenium-2.45.0/selenium-java-2.45.0-srcs.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Selenium Java/selenium-2.45.0/selenium-server-standalone-2.45.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Selenium Java/selenium-server-2.45.0/selenium-server-2.45.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Selenium Java/selenium-server-2.45.0/selenium-server-2.45.0-srcs.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

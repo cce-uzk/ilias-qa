@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_iliasunikoelnselenium" default="compile.module.iliasunikoelnselenium">
+  <dirname property="module.iliasunikoelnselenium.basedir" file="${ant.file.module_iliasunikoelnselenium}"/>
+  
+  <property name="module.jdk.home.iliasunikoelnselenium" value="${jdk.home.1.8}"/>
+  <property name="module.jdk.bin.iliasunikoelnselenium" value="${jdk.bin.1.8}"/>
+  <property name="module.jdk.classpath.iliasunikoelnselenium" value="jdk.classpath.1.8"/>
+  
+  <property name="compiler.args.iliasunikoelnselenium" value="-encoding UTF-8 -source 1.8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="iliasunikoelnselenium.output.dir" value="${module.iliasunikoelnselenium.basedir}/../IliasUniKoelnSelenium-master/out/production/IliasUniKoelnSelenium-master"/>
+  <property name="iliasunikoelnselenium.testoutput.dir" value="${module.iliasunikoelnselenium.basedir}/../IliasUniKoelnSelenium-master/test"/>
+  
+  <path id="iliasunikoelnselenium.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="iliasunikoelnselenium.module.production.classpath">
+    <path refid="${module.jdk.classpath.iliasunikoelnselenium}"/>
+    <path refid="library.ch.racic.selenium:selenium-driver-helper:2.45.0.classpath"/>
+    <path refid="library.org.seleniumhq.selenium:selenium-firefox-driver:3.4.0.classpath"/>
+    <path refid="library.org.seleniumhq.selenium:selenium-java:2.53.1.classpath"/>
+  </path>
+  
+  <path id="iliasunikoelnselenium.runtime.production.module.classpath">
+    <pathelement location="${iliasunikoelnselenium.output.dir}"/>
+    <path refid="library.ch.racic.selenium:selenium-driver-helper:2.45.0.classpath"/>
+    <path refid="library.org.seleniumhq.selenium:selenium-firefox-driver:3.4.0.classpath"/>
+    <path refid="library.org.seleniumhq.selenium:selenium-java:2.53.1.classpath"/>
+  </path>
+  
+  <path id="iliasunikoelnselenium.module.classpath">
+    <path refid="${module.jdk.classpath.iliasunikoelnselenium}"/>
+    <pathelement location="${iliasunikoelnselenium.output.dir}"/>
+    <path refid="library.ch.racic.selenium:selenium-driver-helper:2.45.0.classpath"/>
+    <path refid="library.org.seleniumhq.selenium:selenium-firefox-driver:3.4.0.classpath"/>
+    <path refid="library.org.seleniumhq.selenium:selenium-java:2.53.1.classpath"/>
+  </path>
+  
+  <path id="iliasunikoelnselenium.runtime.module.classpath">
+    <pathelement location="${iliasunikoelnselenium.testoutput.dir}"/>
+    <pathelement location="${iliasunikoelnselenium.output.dir}"/>
+    <path refid="library.ch.racic.selenium:selenium-driver-helper:2.45.0.classpath"/>
+    <path refid="library.org.seleniumhq.selenium:selenium-firefox-driver:3.4.0.classpath"/>
+    <path refid="library.org.seleniumhq.selenium:selenium-java:2.53.1.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.iliasunikoelnselenium">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.iliasunikoelnselenium">
+    <patternset refid="excluded.from.module.iliasunikoelnselenium"/>
+  </patternset>
+  
+  <path id="iliasunikoelnselenium.module.sourcepath">
+    <dirset dir="${module.iliasunikoelnselenium.basedir}/../../IliasUniKoelnSelenium">
+      <include name="IliasUniKoelnSelenium-master/src"/>
+      <include name="IliasUniKoelnSelenium-master/lib"/>
+      <include name="lib"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.iliasunikoelnselenium" depends="compile.module.iliasunikoelnselenium.production,compile.module.iliasunikoelnselenium.tests" description="Compile module IliasUniKoelnSelenium"/>
+  
+  <target name="compile.module.iliasunikoelnselenium.production" depends="register.custom.compilers" description="Compile module IliasUniKoelnSelenium; production classes">
+    <mkdir dir="${iliasunikoelnselenium.output.dir}"/>
+    <javac2 destdir="${iliasunikoelnselenium.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.iliasunikoelnselenium}/javac">
+      <compilerarg line="${compiler.args.iliasunikoelnselenium}"/>
+      <bootclasspath refid="iliasunikoelnselenium.module.bootclasspath"/>
+      <classpath refid="iliasunikoelnselenium.module.production.classpath"/>
+      <src refid="iliasunikoelnselenium.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.iliasunikoelnselenium"/>
+    </javac2>
+    
+    <copy todir="${iliasunikoelnselenium.output.dir}">
+      <fileset dir="${module.iliasunikoelnselenium.basedir}/../IliasUniKoelnSelenium-master/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.iliasunikoelnselenium.basedir}/../IliasUniKoelnSelenium-master/lib">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.iliasunikoelnselenium.basedir}/../lib">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.iliasunikoelnselenium.tests" depends="register.custom.compilers,compile.module.iliasunikoelnselenium.production" description="compile module IliasUniKoelnSelenium; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.iliasunikoelnselenium" description="cleanup module">
+    <delete dir="${iliasunikoelnselenium.output.dir}"/>
+    <delete dir="${iliasunikoelnselenium.testoutput.dir}"/>
+  </target>
+</project>
